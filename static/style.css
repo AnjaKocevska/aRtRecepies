@@ -1,0 +1,41 @@
+h1{
+    color: white;
+    text-size: 20px;
+    position: relative;
+}
+
+h2{
+    color: lightcoral;
+    text-size: 250px;
+   position: middle;
+}
+.leftside,.rightside{
+    height: 100vh;
+    width: 50%;
+}
+.column1 {
+    float: left;
+    width: 50%;
+    height: 800px; 
+}
+.column2{
+    float: right;
+    width: 50%;
+    height: 800px; 
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+form{
+    color: black;
+    font-size: 10px;
+    font-family: Gotham;
+    text-align: center;
+    line-height: 10px;
+    letter-spacing: 3px;
+    column-gap: 10px;
+    column-count: 1;
+    border-bottom: 4px dotted salmon;
+}
