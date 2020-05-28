@@ -20,27 +20,47 @@
   
             <form method="POST" action="/register" class="form">
             <!-- hidden tag for security -->
-            {{ form.hidden_tag() }}
-            {{ form.name.label() }}
-            {{ form.name }}
+            {{ registration_form.hidden_tag() }}
+            {{ registration_form.name.label() }}
+            {{ registration_form.name }}
             <br>
-            {{ form.surname.label() }}
-            {{ form.surname() }}
+            {{ registration_form.surname.label() }}
+            {{ registration_form.surname() }}
             <br>
-            {{ form.email.label() }}
-            {{ form.email() }}
+            {{ registration_form.email.label() }}
+            {{ registration_form.email() }}
             <br>
-            {{ form.password.label() }}
-            {{ form.password() }}
+            {{ registration_form.password.label() }}
+            {{ registration_form.password() }}
             <br>
-            {{ form.confirm_password.label() }}
-            {{ form.confirm_password() }}
+            {{ registration_form.confirm_password.label() }}
+            {{ registration_form.confirm_password() }}
             <br>
-            {{ form.submit(class="fabi")}}
+            {{ registration_form.submit(class="fabi")}}
 
             </form>
     </div>
+
+    <div class="login">
+      <form method="POST" action="/login" class="form">
+      <!-- hidden tag for security -->
+      {{ login_form.hidden_tag() }}
+      <br>
+      {{ login_form.email.label() }}
+      {{ login_form.email() }}
+      <br>
+      {{ login_form.password.label() }}
+      {{ login_form.password() }}
+      <br> 
+      {{ login_form.remember.label() }}
+      {{ login_form.remember() }}
+      <br>
+      {{ login_form.submit(class="hh")}}
+      </form>
+    </div>
+           
 <style>
+
 body {
   margin: 0;
   background-color: salmon;
@@ -54,6 +74,12 @@ body {
   width: 100%;
   display: block;
   transition: top 0.3s;
+  height: 50px;
+}
+
+#navbar ul {
+    list-style: none;
+    margin-top: 0;
 }
 
 #navbar a {
@@ -83,9 +109,10 @@ li.dropdown {
 .dropdown-content {
   display: none;
   position: absolute;
-  min-width: 160px;
+
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  background-color: salmon;
 }
 .dropdown-content a {
   color: black;
@@ -98,6 +125,11 @@ li.dropdown {
   display: block;
 }
 
+.dropdown-item {
+    float: left;
+    clear: left;
+    
+}
 </style>    
     
 </div>
@@ -110,8 +142,11 @@ li.dropdown {
         <a href="javascript:void(0)"
         class="dropbtn">Bottles</a>
         <div class="dropdown-content">
-        <a href="#">Glass </a>
-        <a href="#">Plastic </a>
+        <div class="dropdown-item"><a href="/glass">Glass </a></div>
+        <div class="dropdown-item"><a href="/plastic">Plastic </a></div>
+        {% if email %}
+        <div>{{ email }}</div>
+        {% endif %}
         </li>
    
     
