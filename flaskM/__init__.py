@@ -22,10 +22,10 @@ def create_app(test_config=None):
         registration_form = RegistrationForm()
         login_form = LoginForm()
 
-        if session['user_id']:
-            user_id = session['user_id']
-            print(user_id)
-            db = get_db()
+        #if session['user_id']:
+          #  user_id = session['user_id']
+           # print(user_id)
+           # db = get_db()
             #email = db.execute("SELECT email FROM user WHERE id = ?", (user_id)).fetchone()
 
         return render_template("index.html.jinja2", registration_form=registration_form, login_form=login_form)
@@ -99,7 +99,7 @@ def create_app(test_config=None):
                 session.clear()
                 session['user_id'] = user['id']
                 return redirect(url_for('index'))
-            flash(error)
+            #flash(error)
         #return render_template('login')
 
 
