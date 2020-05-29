@@ -4,7 +4,7 @@
 
 # About the Website
 
-"What to do with your bits and pieces at home" is a website which provides you with creative inspirations how to use the stuff you don't need at home. Instead of throwing it away you can Upcycle creative usefull peaces!
+"What to do with your bits and pieces at home" is a website which provides you with creative inspirations how to use the stuff you don't need at home. Instead of throwing it away you can Upcycle creative usefull pieces!
 
 # Technologies
 
