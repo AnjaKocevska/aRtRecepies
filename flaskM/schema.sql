@@ -1,17 +1,30 @@
-DROP TABLE IF EXISTS user;
-DROP TABLE IF EXISTS post;
-
-CREATE TABLE user(
+CREATE TABLE IF NOT EXISTS user(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     email TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL
 );
-CREATE TABLE post(
+CREATE TABLE IF NOT EXISTS recipe(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    author_id INTEGER NOT NULL,
-    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     title TEXT NOT NULL,
     body TEXT NOT NULL,
-    FOREIGN KEY(author_id) REFERENCES user (id)
+    long_name TEXT NOT NULL,
+    long_description TEXT NOT NULL,
+    process_image TEXT,
+    final_image TEXT,
+    anjas_drawing TEXT,
+    section TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS ingredients(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    recipe_id INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    FOREIGN KEY (recipe_id) REFERENCES recipe (id)
 );
 
+CREATE TABLE IF NOT EXISTS instructions(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    recipe_id INTEGER NOT NULL,
+    number INTEGER,
+    text TEXT NOT NULL,
+    FOREIGN KEY (recipe_id) REFERENCES recipe (id)
+);

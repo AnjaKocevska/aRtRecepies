@@ -1,4 +1,9 @@
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% extends "base.html" %}
+
+{% block title %} Register {% endblock %}
+
+{% block content %}
+
 
 <div class="column2" style="background-color:rgb(227, 221, 221);">
     <form>
@@ -28,3 +33,5 @@
     </form>
 
 </div>
+
+{% endblock %}

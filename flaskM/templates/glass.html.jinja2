@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-   
-    <div style="background-color: lightgrey; padding: 50px; margin: 20px; height:125px; width:188px;">
+{% extends "base.html" %}
+{% block title %}Glass{% endblock %}
+   {% block content %}
+    {% for recipe in recipes %}
+        <div style="background-color: lightgrey; padding: 50px; margin: 20px; height:125px; width:188px;">
+        <h2>{{ recipe.title }}</h2>
+        <a href = "/recepie/{{ recipe.id }}">Recepie</a>
+        <p style="font-color: salmon"> {{ recipe.body }}</p>
+        <img src="{{ url_for('static', filename=recipe.anjas_drawing) }}"  style="width:manual;height:100px;">
+    </div>
+    {% endfor %}   
+{#     <div style="background-color: lightgrey; padding: 50px; margin: 20px; height:125px; width:188px;">
         <h2>Candle holder</h2>
         <a href = "/recepie">Recepie</a>
         <p style="font-color: salmon"> how to make a candle holder out of your glass bottle @home: </p>
@@ -23,6 +25,5 @@
         <h2> Bottle Chandelier</h2>
         <p styles="font-color: salmon"> how to make a  Bottle Chandelier out of your glass bottle @home: </p>
         <img src="{{ url_for('static', filename='lamba.png') }}"  style="width:manual;height:100px;">
-    </div>
-</body>
-</html>
+    </div> #}
+{% endblock %}

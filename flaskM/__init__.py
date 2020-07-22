@@ -4,6 +4,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from .forms import RegistrationForm, LoginForm
 from .models import User
 from .db import get_db 
+from . import db
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
@@ -32,15 +33,31 @@ def create_app(test_config=None):
 
     @app.route("/glass")
     def glass():
-        return render_template("glass.html.jinja2")
+        db = get_db()
+        recipes = db.execute(
+            'SELECT title, body, anjas_drawing, id FROM recipe WHERE section = ?', ('glass', )
+            ).fetchall()
+
+        return render_template("glass.html.jinja2", recipes=recipes)
     
     @app.route("/plastic")
     def plastic():
         return render_template("plastic.html.jinja2")
 
-    @app.route("/recepie")
-    def recepie():
-        return render_template("recepie.html.jinja2")
+    @app.route("/recepie/<int:recipe_id>")
+    def recepie(recipe_id):
+        db = get_db()
+        recipe = db.execute(
+            'SELECT long_name, long_description, process_image, final_image, id FROM recipe WHERE id = ?', (recipe_id, )
+            ).fetchone()
+        ingredients = db.execute(
+            'SELECT name FROM ingredients WHERE recipe_id = ?', (recipe_id, )
+            ).fetchall()
+        instructions = db.execute(
+            'SELECT number, text FROM instructions WHERE recipe_id = ?', (recipe_id, )
+            ).fetchall()
+        
+        return render_template("recepie.html.jinja2", recipe=recipe, ingredients=ingredients, instructions=instructions)
     
     @app.route("/recepie2")
     def recepie2():
@@ -98,7 +115,7 @@ def create_app(test_config=None):
             if error is None:
                 session.clear()
                 session['user_id'] = user['id']
-                return redirect(url_for('index'))
+                return redirect(url_for('glass'))
             #flash(error)
         #return render_template('login')
 
